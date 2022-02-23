@@ -110,6 +110,9 @@ function displayMessage (message, source) {
     if (source !== room && message.room !== 'public' && source !== 'server' && source !== 'you') {
         createNotifactionOnTab(chats.get(source));
     }
+    if (message.room === 'public' && room !== 'public') {
+        createNotifactionOnTab(chats.get('public'));
+    }
     return card;
 }
 
@@ -179,4 +182,7 @@ document.querySelector('#change-username-btn').addEventListener('click', () => {
 });
 
 // switch to public tab
-document.querySelector('#public-tab').addEventListener('click', () => {room='public'});
+document.querySelector('#public-tab').addEventListener('click', (e) => {
+    room='public';
+    e.target.children[0].classList.add('notification-disabled')
+});
