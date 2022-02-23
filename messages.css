@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  font-size: large;
+}
+
+main {
+  flex: 1 0 auto;
+  padding-top: 2em;
+  padding-left: 300px;
+  overflow-y: auto;
+  height: 50vh;
+}
+
+footer {
+  padding-left: 300px;
+  margin-top: 20px;
+}
+
+.card {
+  display: flow-root;
+}
+
+.timestamp {
+  float: right;
+  padding: 3px 10px;
+}
+
+.tik-icon {
+  float: right;
+  padding: 3px 0px;
+}
+
+.notification-disabled {
+  display: none;
+}

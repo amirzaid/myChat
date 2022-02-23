@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+    <!--Personalized CSS-->
+    <link rel="stylesheet" href="/messages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages App</title>
+</head>
+
+<body>
+    <header>
+        <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav sidenav-fixed sidenav-close">
+            <li>
+                <div class="user-view">
+                    <i class="material-icons teal-text text-lighten-2 large">account_box</i>
+                    <a href="#name"><span class="name teal-text text-lighten-2">You</span></a>
+                    <span id="id" class="id teal-text text-lighten-2">Your ID</span>
+                    <a id='edit-username-btn' class="modal-trigger" href="#edit-username-modal">
+                        <i class="material-icons teal-text text-lighten-2 tiny">mode_edit</i>
+                    </a>
+                </div>
+            </li>
+            <li><a class="subheader" style="display: block;">No active chats</a></li>
+        </ul>
+        <!-- End sidenav -->
+    </header>
+    <main>
+        <div id='chat' class="container">
+            <ul class="tabs">
+                <li id='public-tab' class="tab col s3">
+                    <a href="#public">
+                        Public
+                        <i class="material-icons text-lighten-2 tiny">notifications</i>
+                    </a>
+                </li>
+            </ul>
+            <div id='public'>
+                <!-- <div class="card">
+                    <div class="card-content lighten-3">
+                        <span class="teal-text text-lighten-2">test1</span>
+                        <p>test1</p>
+                    </div>
+                    <span style='float: right; padding: 3px 10px;'>18:17</span>
+                    <i class="material-icons teal-text text-lighten-2"
+                        style='float: right; padding: 3px 0px;'>done_all</i>
+                </div> -->
+            </div>
+        </div>
+        <!-- Fixed action button -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large">
+                <i class="large material-icons teal lighten-2">mode_edit</i>
+            </a>
+            <ul>
+                <li><a id="add-person-btn" href="#add-person-modal"
+                        class="btn-floating btn-large modal-trigger teal lighten-2">
+                        <i class="large material-icons">person_add</i>
+                    </a></li>
+                <!-- <li><a class="btn-floating btn-large teal lighten-2"><i class="large material-icons">share</i></a></li> -->
+            </ul>
+        </div>
+        <!-- End fixed action button -->
+
+        <!-- Modal Structure -->
+        <div id="add-person-modal" class="modal">
+            <!-- Add contact menu -->
+            <div class="modal-content">
+                <h4>Create a chat</h4>
+                <p>Enter the ID of the contact you want to start chat with</p>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="add_id" type="text" class="validate">
+                            <label for="add_id">ID</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="add-contact-btn" class="modal-close waves-effect waves-green btn-flat">Create</a>
+            </div>
+            <!-- End add contact menu -->
+        </div>
+        <!-- End Modal -->
+        <!-- Modal Structure -->
+        <div id="edit-username-modal" class="modal">
+            <!-- Add contact menu -->
+            <div class="modal-content">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="edit-username" type="text" class="validate">
+                            <label for="edit-username">USERNAME</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="change-username-btn" class="modal-close waves-effect waves-green btn-flat">OK</a>
+            </div>
+            <!-- End add contact menu -->
+        </div>
+        <!-- End Modal -->
+    </main>
+    <footer>
+        <div class="container">
+            <!-- Write message footer -->
+            <div id='message-form' class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <input id='message-input' placeholder="Enter you message" id="message" type="text" />
+                            <label for="Message">You</label>
+                        </div>
+                        <div class="col 2">
+                            <button id='send-button' class="btn waves-effect waves-light" type="submit" name="action">
+                                Send
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- End write message footer -->
+        </div>
+    </footer>
+    <!--JavaScript at end of body for optimized loading-->
+    <!-- Compiled and minified JavaScript -->
+    <script type='module' src="/utils.js"></script>
+    <script type='module' src="/ws-client.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
