@@ -21,7 +21,7 @@ const io = require('socket.io')(httpServer, {
 });
 
 io.on('connection', socket => {
-    console.log(socket.id);
+    console.log(`A user connected with id: ${socket.id}`);
     socket.on('send-message', (message) => {
         if (message.room === 'public') {
             socket.broadcast.emit('receive-message', message, socket.id);
@@ -29,7 +29,7 @@ io.on('connection', socket => {
             socket.to(message.room).emit('receive-message', message, socket.id);
         }
         
-        console.log(message);
+        console.log(`received message: ${message}`);
     });
     
     socket.on('delivered', (message_id, source) => {

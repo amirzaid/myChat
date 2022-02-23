@@ -4,7 +4,7 @@
   "description": "",
   "main": "messages.js",
   "scripts": {
-    "start": "ws-server.js",
+    "start": "node ws-server.js",
     "dev": "nodemon ws-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

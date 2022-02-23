@@ -25,26 +25,22 @@ socket.on('connect', () => {
 
 // Handle message receiving
 socket.on('receive-message', (message, id) => {
-    console.log(message.room);
     displayMessage(message, id);
     socket.emit('delivered', message.id, id); // Notify server the message was seen
 });
 
 socket.on('mark-seen', (message_id) => {
     const deliveredMessage = document.querySelector(`#${message_id}`);
-    console.log(message_id);
-    console.log(deliveredMessage);
     deliveredMessage.querySelector('.tik-icon').classList.add('blue-text');
 });
 
 // Send a message
 messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(room);
-
+    
     // Check if message is not empty
     if (messageInput.value === '') return;
-
+    
     // Build message object
     const message = {
         id: `m${++message_count}`,
@@ -52,7 +48,7 @@ messageForm.addEventListener('submit', (e) => {
         room: room,
     }
     console.log(message);
-
+    
     // Display my message
     const card = displayMessage(message, 'you');
     socket.emit('send-message', message, messageRecieved(card));
@@ -111,9 +107,7 @@ function displayMessage (message, source) {
     document.querySelector(`#${chats.get(message.room)}`).append(card);
     }
     
-    console.log(source);
     if (source !== room && message.room !== 'public' && source !== 'server' && source !== 'you') {
-        console.log('notification');
         createNotifactionOnTab(chats.get(source));
     }
     return card;
@@ -122,8 +116,6 @@ function displayMessage (message, source) {
 // Display a notifcation on a tab
 function createNotifactionOnTab (tab_id) {
     const tab = document.querySelector(`a[href='#${tab_id}']`);
-    console.log(tab);
-    console.log(tab.children[0]);
     tab.children[0].classList.remove('notification-disabled');
 }
 
@@ -147,6 +139,7 @@ function addChatWithUser (id) {
     const chatLink = document.createElement('a');
     chatLink.textContent = id;
     chatLink.href = '#!';
+    chatLink.classList.add('sidenav-contact');
     chatLink.addEventListener('click', (e) => {room=id;});
     chat.append(chatLink);
     slideOut.append(chat);
@@ -159,7 +152,6 @@ function addChatWithUser (id) {
     newTabLink.innerHTML += '<i class="material-icons text-lighten-2 tiny notification-disabled">notifications</i>';
     newTabLink.addEventListener('click', (e) => {
         room=id;
-        console.log(e);
         e.target.children[0].classList.add('notification-disabled');
     });
     newTab.append(newTabLink);

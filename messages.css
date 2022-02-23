@@ -36,3 +36,7 @@ footer {
 .notification-disabled {
   display: none;
 }
+
+.sidenav-contact {
+  cursor: auto;
+}
